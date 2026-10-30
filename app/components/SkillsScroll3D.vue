@@ -4,37 +4,70 @@ import * as THREE from 'three'
 // ── Skill data ─────────────────────────────────────────────────────────────
 // Logos from devicon (MIT), bundled locally in /public/images/skills
 const ICON = '/images/skills'
+// Grouped by category; the order here is the scroll order.
+// `experience` and `projects` are optional — leave them out to hide those chips.
 const skills = [
-  { id: 'vue',      name: 'Vue.js 3',         short: 'Vue',      category: 'Frontend Architecture', color: '#42b883', experience: '4+ Years', icon: `${ICON}/vue.svg`,
+  // ── Frontend
+  { id: 'javascript', group: 'Frontend', name: 'JavaScript', short: 'JS', category: 'Core Language', color: '#F7DF1E', icon: null, shape: 'js',
+    description: 'Modern ES features, async patterns and clean, framework-free DOM work underneath everything I ship.',
+    projects: ['All live projects'] },
+  { id: 'vue', group: 'Frontend', name: 'Vue.js 3', short: 'Vue', category: 'Frontend Framework', color: '#42b883', experience: '4+ Years', icon: `${ICON}/vue.svg`,
     description: 'Reactive component systems, Pinia state management and the Composition API for fast, high-frequency dashboards.',
     projects: ['Golfo Radio', 'Hair Creation', 'Capmagic'] },
-  { id: 'nuxt',     name: 'Nuxt 4',           short: 'Nuxt',     category: 'Full-Stack Framework',  color: '#00DC82', experience: '3+ Years', icon: `${ICON}/nuxt.svg`,
+  { id: 'nuxt', group: 'Frontend', name: 'Nuxt 4', short: 'Nuxt', category: 'Full-Stack Framework', color: '#00DC82', experience: '3+ Years', icon: `${ICON}/nuxt.svg`,
     description: 'Universal SSR, static pre-rendering, Nitro server routes and top Lighthouse scores out of the box.',
     projects: ['QRGEN', 'Chit Fund Manager', 'This Portfolio'] },
-  { id: 'go',       name: 'Go',               short: 'Go',       category: 'Backend & Systems',     color: '#00ACD7', experience: '2+ Years', icon: `${ICON}/go.svg`,
-    description: 'High-throughput services, goroutine concurrency, clean REST APIs and low-latency data processing.',
-    projects: ['Ashray Infrastructure'] },
-  { id: 'laravel',  name: 'Laravel',          short: 'Laravel',  category: 'Backend & APIs',        color: '#FF2D20', experience: '4+ Years', icon: `${ICON}/laravel.svg`,
-    description: 'Eloquent ORM, Livewire interfaces, secure auth, queued workers and well-structured RESTful APIs.',
-    projects: ['Capmagic', 'Sarvesukhantu Swaha'] },
-  { id: 'postgres', name: 'PostgreSQL',       short: 'Postgres', category: 'Database Architecture', color: '#5B8CFF', experience: '4+ Years', icon: `${ICON}/postgres.svg`,
-    description: 'Relational modelling, index tuning, analytical SQL, ACID transactions and JSONB document storage.',
-    projects: ['Capmagic', 'Ashray Infrastructure'] },
-  { id: 'tailwind', name: 'Tailwind CSS',     short: 'Tailwind', category: 'UI & Design Systems',   color: '#38BDF8', experience: '4+ Years', icon: `${ICON}/tailwind.svg`,
+  { id: 'tailwind', group: 'Frontend', name: 'Tailwind CSS', short: 'Tailwind', category: 'Styling & Design Systems', color: '#38BDF8', experience: '4+ Years', icon: `${ICON}/tailwind.svg`,
     description: 'Custom design systems, fluid type scales, responsive tokens and bespoke animation utilities.',
     projects: ['All live projects'] },
-  { id: 'gsap',     name: 'GSAP',             short: 'GSAP',     category: 'Motion & Animation',    color: '#88CE02', experience: '3+ Years', icon: null,
+  { id: 'bootstrap', group: 'Frontend', name: 'Bootstrap', short: 'Bootstrap', category: 'Styling & UI Kits', color: '#8F5BF0', icon: `${ICON}/bootstrap.svg`,
+    description: 'Responsive grids and ready-made UI components for quick, consistent layouts and admin panels.' },
+  { id: 'gsap', group: 'Frontend', name: 'GSAP', short: 'GSAP', category: 'Motion & Animation', color: '#88CE02', experience: '3+ Years', icon: null,
     description: 'ScrollTrigger timelines, kinetic typography and smooth, hardware-accelerated motion choreography.',
     projects: ['Ashray Infrastructure', 'This Portfolio'] },
-  { id: 'threejs',  name: 'Three.js / WebGL', short: 'Three.js', category: 'Creative 3D',           color: '#D96A2B', experience: '2+ Years', icon: `${ICON}/threejs.svg`,
+  { id: 'threejs', group: 'Frontend', name: 'Three.js / WebGL', short: 'Three.js', category: 'Creative 3D', color: '#D96A2B', experience: '2+ Years', icon: `${ICON}/threejs.svg`,
     description: 'Custom WebGL scenes, particle systems, shaders and interactive 3D like the one you are scrolling through.',
     projects: ['This Portfolio'] },
-  { id: 'firebase', name: 'Firebase',         short: 'Firebase', category: 'Serverless Cloud',      color: '#FFCA28', experience: '3+ Years', icon: `${ICON}/firebase.svg`,
+  // ── Backend
+  { id: 'node', group: 'Backend', name: 'Node.js', short: 'Node', category: 'Server Runtime', color: '#6CC24A', icon: `${ICON}/nodejs.svg`,
+    description: 'JavaScript on the server: APIs, build tooling, scripts and real-time services.' },
+  { id: 'go', group: 'Backend', name: 'Go', short: 'Go', category: 'Backend & Systems', color: '#00ACD7', experience: '2+ Years', icon: `${ICON}/go.svg`,
+    description: 'High-throughput services, goroutine concurrency, clean REST APIs and low-latency data processing.',
+    projects: ['Ashray Infrastructure'] },
+  { id: 'php', group: 'Backend', name: 'PHP', short: 'PHP', category: 'Server Language', color: '#8892BF', icon: `${ICON}/php.svg`,
+    description: 'Server-rendered sites, custom CMS builds and integrations, from plain PHP to modern frameworks.',
+    projects: ['XS Pilates', 'Sarvesukhantu Swaha'] },
+  { id: 'laravel', group: 'Backend', name: 'Laravel', short: 'Laravel', category: 'Backend Framework', color: '#FF2D20', experience: '4+ Years', icon: `${ICON}/laravel.svg`,
+    description: 'Eloquent ORM, Livewire interfaces, secure auth, queued workers and well-structured RESTful APIs.',
+    projects: ['Capmagic', 'Sarvesukhantu Swaha'] },
+  // ── Data & Cloud
+  { id: 'postgres', group: 'Data & Cloud', name: 'PostgreSQL', short: 'Postgres', category: 'Database', color: '#5B8CFF', experience: '4+ Years', icon: `${ICON}/postgres.svg`,
+    description: 'Relational modelling, index tuning, analytical SQL, ACID transactions and JSONB document storage.',
+    projects: ['Capmagic', 'Ashray Infrastructure'] },
+  { id: 'mysql', group: 'Data & Cloud', name: 'MySQL', short: 'MySQL', category: 'Database', color: '#4AA8D8', icon: `${ICON}/mysql.svg`,
+    description: 'Schema design, joins and indexing for the CMS and Laravel apps that run on classic LAMP stacks.',
+    projects: ['Sarvesukhantu Swaha'] },
+  { id: 'firebase', group: 'Data & Cloud', name: 'Firebase', short: 'Firebase', category: 'Serverless Cloud', color: '#FFCA28', experience: '3+ Years', icon: `${ICON}/firebase.svg`,
     description: 'Hosting, real-time Firestore streams, auth rules and cloud functions for apps that ship fast.',
     projects: ['Hair Creation', 'Chit Fund Manager'] },
+  // ── Tools & DevOps
+  { id: 'github', group: 'Tools & DevOps', name: 'GitHub', short: 'GitHub', category: 'Version Control', color: '#E6EDF3', icon: `${ICON}/github.svg`, mode: 'hole',
+    description: 'Git workflows, pull-request reviews, Actions for CI and tidy, well-documented repositories.' },
+  { id: 'gitlab', group: 'Tools & DevOps', name: 'GitLab', short: 'GitLab', category: 'Version Control & CI', color: '#FC6D26', icon: `${ICON}/gitlab.svg`,
+    description: 'Merge-request workflows and GitLab CI/CD pipelines for automated testing and deployment.' },
 ]
+// Sidebar: skills grouped under their category headings
+const groups = computed(() => {
+  const out = []
+  skills.forEach((s, i) => {
+    let g = out.find(x => x.name === s.group)
+    if (!g) { g = { name: s.group, items: [] }; out.push(g) }
+    g.items.push({ ...s, i })
+  })
+  return out
+})
 const N = skills.length
-const STEP_VH = 70 // scroll distance per skill
+const STEP_VH = 55 // scroll distance per skill
 
 const section = ref(null)
 const canvas  = ref(null)
@@ -80,22 +113,68 @@ function imageShape (url) {
     img.src = url
   })
 }
-function pointsFrom (data, count) {
-  const px = []
-  const d = data.data
-  for (let y = 0; y < SAMPLE; y += 1) for (let x = 0; x < SAMPLE; x += 1) {
-    if (d[(y * SAMPLE + x) * 4 + 3] > 110) px.push(x, y)
+// Turn a rasterised logo into `count` particle positions.
+//  mode 'alpha' — the drawn shape itself (default)
+//  mode 'hole'  — the transparent cut-out inside a round badge (e.g. GitHub's Octocat)
+// About half the particles go on outlines and colour boundaries, so shapes and
+// inner details (letters, facets) read clearly instead of as a solid blob.
+function pointsFrom (data, count, mode = 'alpha', edgeRatio = 0.5) {
+  const d = data.data, S = SAMPLE
+  const A = (x, y) => d[(y * S + x) * 4 + 3]
+  const R = S / 2
+  const on = new Uint8Array(S * S)
+  for (let y = 0; y < S; y++) for (let x = 0; x < S; x++) {
+    if (mode === 'hole') {
+      const dx = x - R + 0.5, dy = y - R + 0.5
+      on[y * S + x] = A(x, y) <= 110 && dx * dx + dy * dy < (R * 0.84) ** 2 ? 1 : 0
+    } else on[y * S + x] = A(x, y) > 110 ? 1 : 0
   }
+  const fill = [], edge = []
+  const colDiff = (i, j) => {
+    const a = i * 4, b = j * 4
+    return Math.abs(d[a] - d[b]) + Math.abs(d[a + 1] - d[b + 1]) + Math.abs(d[a + 2] - d[b + 2])
+  }
+  for (let y = 1; y < S - 1; y++) for (let x = 1; x < S - 1; x++) {
+    const i = y * S + x
+    if (!on[i]) continue
+    fill.push(x, y)
+    const nb = [i - 1, i + 1, i - S, i + S]
+    let isEdge = false
+    for (const j of nb) {
+      if (!on[j] || (mode === 'alpha' && colDiff(i, j) > 60)) { isEdge = true; break }
+    }
+    if (isEdge) edge.push(x, y)
+  }
+  const nf = fill.length / 2, ne = edge.length / 2
+  if (nf < 50) return null
   const out = new Float32Array(count * 3)
-  const n = px.length / 2
-  if (n < 50) return null
   for (let i = 0; i < count; i++) {
-    const k = ((Math.random() * n) | 0) * 2
-    out[i * 3]     = ((px[k] + Math.random()) / SAMPLE - 0.5)
-    out[i * 3 + 1] = -((px[k + 1] + Math.random()) / SAMPLE - 0.5)
+    const useEdge = ne > 20 && Math.random() < edgeRatio
+    const src = useEdge ? edge : fill
+    const k = ((Math.random() * (useEdge ? ne : nf)) | 0) * 2
+    out[i * 3]     = ((src[k] + Math.random()) / S - 0.5)
+    out[i * 3 + 1] = -((src[k + 1] + Math.random()) / S - 0.5)
     out[i * 3 + 2] = (Math.random() - 0.5) * 0.12
   }
   return out
+}
+
+// Custom drawn shapes for logos that don't translate well from their SVG
+const customShapes = {
+  // JavaScript: rounded square outline with a bold "JS" in the corner, as in the badge
+  js (x, S) {
+    const m = S * 0.1, w = S - m * 2, r = S * 0.06
+    x.strokeStyle = '#fff'; x.lineWidth = S * 0.05
+    x.beginPath(); x.roundRect(m, m, w, w, r); x.stroke()
+    x.fillStyle = '#fff'; x.textAlign = 'right'; x.textBaseline = 'alphabetic'
+    x.font = `800 ${S * 0.42}px Syne, Arial Black, sans-serif`
+    x.fillText('JS', S - m * 1.6, S - m * 1.55)
+  },
+}
+function drawShape (fn) {
+  const c = document.createElement('canvas'); c.width = c.height = SAMPLE
+  const x = c.getContext('2d'); fn(x, SAMPLE)
+  return x.getImageData(0, 0, SAMPLE, SAMPLE)
 }
 
 // ── Three.js scene ─────────────────────────────────────────────────────────
@@ -179,11 +258,12 @@ onMounted(() => {
   scene.add(dust)
 
   // Target shapes (start with text, upgrade to logos when they load)
-  const targets = skills.map(s => pointsFrom(textShape(s.short), COUNT))
+  const targets = skills.map(s =>
+    (s.shape && pointsFrom(drawShape(customShapes[s.shape]), COUNT)) || pointsFrom(textShape(s.short), COUNT, 'alpha', 0.35))
   skills.forEach((s, i) => {
-    if (!s.icon) return
+    if (!s.icon || s.shape) return
     imageShape(s.icon).then(d => {
-      const p = pointsFrom(d, COUNT)
+      const p = pointsFrom(d, COUNT, s.mode || 'alpha')
       if (p) { targets[i] = p; if (i === idx.value) burst(0.025) }
     }).catch(() => {})
   })
@@ -324,7 +404,7 @@ onBeforeUnmount(() => cleanup())
         <div class="sk-text">
           <p class="sk-eyebrow">
             <span class="sk-dot" :style="{ background: skill.color }" />
-            Core tech stack
+            {{ skill.group }}
             <span class="sk-count"><b>{{ pad(idx + 1) }}</b> / {{ pad(N) }}</span>
           </p>
 
@@ -334,20 +414,25 @@ onBeforeUnmount(() => cleanup())
               <h2 class="sk-name">{{ skill.name }}</h2>
               <p class="sk-desc">{{ skill.description }}</p>
               <div class="sk-meta">
-                <span class="sk-exp">{{ skill.experience }}</span>
+                <span v-if="skill.experience" class="sk-exp">{{ skill.experience }}</span>
                 <span v-for="p in skill.projects" :key="p" class="sk-proj">{{ p }}</span>
               </div>
             </div>
           </Transition>
         </div>
 
-        <ol class="sk-list" aria-label="Skills">
-          <li v-for="(s, i) in skills" :key="s.id">
-            <button :class="{ on: i === idx, done: i < idx }" :style="{ '--c': s.color }" @click="jumpTo(i)">
-              <i /> <span>{{ s.short }}</span>
-            </button>
-          </li>
-        </ol>
+        <nav class="sk-list" aria-label="Skills">
+          <div v-for="g in groups" :key="g.name" class="sk-group">
+            <p class="sk-gname" :class="{ on: g.name === skill.group }">{{ g.name }}</p>
+            <ul>
+              <li v-for="s in g.items" :key="s.id">
+                <button :class="{ on: s.i === idx, done: s.i < idx }" :style="{ '--c': s.color }" @click="jumpTo(s.i)">
+                  <i /> <span>{{ s.short }}</span>
+                </button>
+              </li>
+            </ul>
+          </div>
+        </nav>
       </div>
 
       <div class="sk-bar" aria-hidden="true"><i :style="{ transform: `scaleX(${(idx + 1) / N})`, background: skill.color }" /></div>
@@ -402,10 +487,13 @@ onBeforeUnmount(() => cleanup())
   100% { opacity: 0; transform: translateX(-10px); }
 }
 
-.sk-list { list-style: none; margin: 0; padding: 0; width: 170px; flex-shrink: 0; display: flex; flex-direction: column; gap: 4px; pointer-events: auto; }
+.sk-list { width: 170px; flex-shrink: 0; display: flex; flex-direction: column; gap: 14px; pointer-events: auto; }
+.sk-list ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.sk-gname { margin: 0 0 2px; font-size: .68rem; letter-spacing: .16em; text-transform: uppercase; color: #5c544b; font-weight: 700; transition: color .3s; }
+.sk-gname.on { color: #B9AE9F; }
 .sk-list button {
-  display: flex; align-items: center; gap: 12px; background: none; border: 0; padding: 6px 0;
-  color: #6E655B; font-weight: 700; font-size: .85rem; letter-spacing: .04em; text-transform: uppercase;
+  display: flex; align-items: center; gap: 12px; background: none; border: 0; padding: 3px 0;
+  color: #6E655B; font-weight: 700; font-size: .8rem; letter-spacing: .04em; text-transform: uppercase;
   transition: color .3s;
 }
 .sk-list button i { width: 18px; height: 2px; background: currentColor; transition: width .4s cubic-bezier(.16, 1, .3, 1), background .3s; }
@@ -434,6 +522,10 @@ onBeforeUnmount(() => cleanup())
   .sk-name { margin-bottom: 12px; }
   .sk-desc { margin-bottom: 16px; }
   .sk-hint { bottom: auto; top: 90px; }
+}
+@media (max-height: 760px) and (min-width: 901px) {
+  .sk-list { gap: 8px; }
+  .sk-list button { padding: 1px 0; font-size: .74rem; }
 }
 @media (max-height: 640px) and (max-width: 900px) {
   .sk-desc { display: none; }

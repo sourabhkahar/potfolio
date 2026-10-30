@@ -1,6 +1,7 @@
 // Shared project list, used by the home page rail and the /projects page.
 // fit: 'contain' shows the whole screenshot (for very wide or tall captures).
 export const projects = [
+  { name: 'Aman Construction',     kind: 'CMS',                group: 'CMS',        tags: ['Nuxt', 'Nuxt', 'Vue', 'Tailwind'],            image: '/images/projects/aman-construction.png',  url: 'https://aman-builders.web.app/',         featured: true },
   { name: 'XS Pilates',            kind: 'CMS',                group: 'CMS',        tags: ['jQuery', 'PHP', 'HTML', 'CSS'],            image: '/images/projects/x-pilates.png',             url: 'https://xs-pilates.com/',                featured: true },
   { name: 'Golfo Radio',           kind: 'Frontend',           group: 'Frontend',   tags: ['Vue', 'Tailwind', 'Axios', 'Figma'],       image: '/images/projects/golfo-radio.png',           url: 'https://golforadio.com/',                featured: true },
   { name: 'Hair Creation',         kind: 'HRMS / CMS',         group: 'Full-stack', tags: ['Vue', 'Tailwind', 'Firebase', 'PWA'],      image: '/images/projects/hair-creation.png',         url: 'https://hair-creation-8ffc3.web.app/',   featured: true },

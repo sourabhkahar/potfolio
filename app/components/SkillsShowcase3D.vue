@@ -5,74 +5,167 @@ const canvasRef = ref(null)
 const containerRef = ref(null)
 
 const skills = [
+  // ── Frontend Architecture & UI ──
+  {
+    id: 'javascript',
+    name: 'JavaScript (ES6+)',
+    short: 'JS',
+    category: 'Core Language',
+    categoryGroup: 'Frontend',
+    color: '#F7DF1E',
+    experience: '5+ Years',
+    description: 'Deep mastery of asynchronous patterns, Event Loop, Closures, modern ESNext syntax, browser APIs, and clean modular architecture.',
+    projects: ['All Projects', 'Interactive WebGL', 'Custom SPAs']
+  },
   {
     id: 'vue',
     name: 'Vue.js 3',
     short: 'Vue',
-    category: 'Frontend Architecture',
+    category: 'Frontend Framework',
+    categoryGroup: 'Frontend',
     color: '#42b883',
     experience: '4+ Years',
-    description: 'Reactive component systems, Pinia state management, Composition API, and sub-millisecond DOM diffing for high-frequency dashboards.',
-    projects: ['Golfo Radio', 'Hair Creation', 'Capmagic']
+    description: 'Reactive component systems, Pinia state management, Composition API, custom directives, and sub-millisecond virtual DOM rendering.',
+    projects: ['Golfo Radio', 'Hair Creation', 'Capmagic', 'Ashray Infrastructure']
   },
   {
     id: 'nuxt',
     name: 'Nuxt 4',
     short: 'Nuxt',
     category: 'Full-Stack Framework',
+    categoryGroup: 'Frontend',
     color: '#00DC82',
     experience: '3+ Years',
-    description: 'Universal SSR, static pre-rendering, edge computing with Nitro server, API routing, and maximum Lighthouse performance.',
+    description: 'Universal SSR, static site generation, Nitro server engine, automatic route code-splitting, SEO metadata, and edge caching.',
     projects: ['QRGEN', 'Chit Fund Manager', 'This Portfolio']
-  },
-  {
-    id: 'go',
-    name: 'Go (Golang)',
-    short: 'Go',
-    category: 'Backend & Systems',
-    color: '#00ACD7',
-    experience: '2+ Years',
-    description: 'High-throughput microservices, concurrent goroutine architectures, robust REST APIs with Gin/Fiber, and low-latency data processing.',
-    projects: ['Ashray Infrastructure']
-  },
-  {
-    id: 'laravel',
-    name: 'Laravel 11',
-    short: 'Laravel',
-    category: 'Backend & APIs',
-    color: '#FF2D20',
-    experience: '4+ Years',
-    description: 'Enterprise backend architectures, Eloquent ORM, Livewire dynamic interfaces, secure auth, queued background workers, and RESTful APIs.',
-    projects: ['Capmagic', 'Sarvesukhantu Swaha']
-  },
-  {
-    id: 'postgres',
-    name: 'PostgreSQL',
-    short: 'Postgres',
-    category: 'Database Architecture',
-    color: '#4169E1',
-    experience: '4+ Years',
-    description: 'Relational schema modeling, index optimization, complex analytical SQL queries, ACID transactions, and hybrid JSONB document stores.',
-    projects: ['Capmagic', 'Ashray Infrastructure']
   },
   {
     id: 'tailwind',
     name: 'Tailwind CSS',
     short: 'Tailwind',
     category: 'UI & Design Systems',
+    categoryGroup: 'Frontend',
     color: '#38BDF8',
     experience: '4+ Years',
-    description: 'Custom design systems, fluid typographic scales, responsive tokens, dark-mode architectures, and bespoke animation utilities.',
-    projects: ['All Live Projects']
+    description: 'Scalable utility-first design systems, fluid responsive typography, dark/light theme tokens, and custom micro-animations.',
+    projects: ['Golfo Radio', 'Hair Creation', 'QRGEN', 'Chit Fund Manager']
   },
+  {
+    id: 'bootstrap',
+    name: 'Bootstrap',
+    short: 'Bootstrap',
+    category: 'Responsive Framework',
+    categoryGroup: 'Frontend',
+    color: '#7952B3',
+    experience: '4+ Years',
+    description: 'Rapid responsive UI prototyping, 12-column flexible grid architectures, cross-browser compatibility, and modular layout components.',
+    projects: ['XS Pilates', 'Admin Portals', 'Enterprise Dashboards']
+  },
+
+  // ── Backend & Server Engineering ──
+  {
+    id: 'php',
+    name: 'PHP',
+    short: 'PHP',
+    category: 'Backend Engineering',
+    categoryGroup: 'Backend',
+    color: '#777BB4',
+    experience: '5+ Years',
+    description: 'Object-oriented programming, modern PHP 8.x attributes, robust MVC architectures, RESTful API design, and MySQL/Postgres drivers.',
+    projects: ['XS Pilates', 'Capmagic', 'Sarvesukhantu Swaha']
+  },
+  {
+    id: 'laravel',
+    name: 'Laravel 11',
+    short: 'Laravel',
+    category: 'Backend Framework',
+    categoryGroup: 'Backend',
+    color: '#FF2D20',
+    experience: '4+ Years',
+    description: 'Enterprise backend development, Eloquent ORM relations, Livewire dynamic interfaces, queued jobs, authentication, and secure REST APIs.',
+    projects: ['Capmagic', 'Sarvesukhantu Swaha']
+  },
+  {
+    id: 'node',
+    name: 'Node.js',
+    short: 'Node',
+    category: 'Runtime & APIs',
+    categoryGroup: 'Backend',
+    color: '#68A063',
+    experience: '3+ Years',
+    description: 'Event-driven backend services, Express and Nitro APIs, asynchronous I/O, middleware pipelines, and npm package orchestration.',
+    projects: ['Full-stack Microservices', 'Serverless APIs']
+  },
+  {
+    id: 'go',
+    name: 'Go (Golang)',
+    short: 'Go',
+    category: 'High-Concurrency Systems',
+    categoryGroup: 'Backend',
+    color: '#00ACD7',
+    experience: '2+ Years',
+    description: 'High-throughput microservices, concurrent goroutine channels, high-performance REST APIs with Gin/Fiber, and minimal CPU footprint.',
+    projects: ['Ashray Infrastructure']
+  },
+
+  // ── Database & Cloud ──
+  {
+    id: 'postgres',
+    name: 'PostgreSQL',
+    short: 'Postgres',
+    category: 'Relational Database',
+    categoryGroup: 'Database',
+    color: '#4169E1',
+    experience: '4+ Years',
+    description: 'Normalized database schema design, index tuning, complex analytical aggregations, ACID transactions, and hybrid JSONB document stores.',
+    projects: ['Capmagic', 'Ashray Infrastructure']
+  },
+  {
+    id: 'firebase',
+    name: 'Firebase',
+    short: 'Firebase',
+    category: 'Serverless Cloud',
+    categoryGroup: 'Database',
+    color: '#FFCA28',
+    experience: '3+ Years',
+    description: 'Production Firebase Hosting, Firestore real-time NoSQL database streams, Firebase Auth rules, and scalable cloud storage.',
+    projects: ['Hair Creation', 'Chit Fund Manager', 'This Portfolio']
+  },
+
+  // ── DevOps & Version Control ──
+  {
+    id: 'github',
+    name: 'GitHub',
+    short: 'GitHub',
+    category: 'DevOps & CI/CD',
+    categoryGroup: 'DevOps',
+    color: '#E6EDF3',
+    experience: '5+ Years',
+    description: 'Git source control, GitHub Actions CI/CD automated deployment pipelines, code review workflows, releases, and issue tracking.',
+    projects: ['Open Source Repos', 'All Production Workflows']
+  },
+  {
+    id: 'gitlab',
+    name: 'GitLab',
+    short: 'GitLab',
+    category: 'DevOps & Pipelines',
+    categoryGroup: 'DevOps',
+    color: '#FC6D26',
+    experience: '3+ Years',
+    description: 'GitLab CI/CD automated test and deployment pipelines, container registry integration, branch protection rules, and enterprise collaboration.',
+    projects: ['Enterprise CI/CD Pipelines']
+  },
+
+  // ── Creative Motion & 3D ──
   {
     id: 'gsap',
     name: 'GSAP',
     short: 'GSAP',
     category: 'Motion & Physics',
+    categoryGroup: 'Creative',
     color: '#88CE02',
     experience: '3+ Years',
-    description: 'Silky smooth ScrollTrigger timelines, kinetic typography, coordinate tweening, and hardware-accelerated motion choreography.',
+    description: 'Silky smooth ScrollTrigger timelines, kinetic typography, coordinate tweening, SVG morphing, and hardware-accelerated motion choreography.',
     projects: ['Ashray Infrastructure', 'This Portfolio']
   },
   {
@@ -80,25 +173,39 @@ const skills = [
     name: 'Three.js / WebGL',
     short: 'Three.js',
     category: 'Creative 3D & Shaders',
+    categoryGroup: 'Creative',
     color: '#C2571A',
     experience: '2+ Years',
-    description: 'Custom WebGL viewports, procedural particle physics, lighting calculations, camera choreography, and interactive 3D elements.',
-    projects: ['Skills Showcase', 'This Portfolio']
-  },
-  {
-    id: 'firebase',
-    name: 'Firebase',
-    short: 'Firebase',
-    category: 'Serverless Cloud',
-    color: '#FFCA28',
-    experience: '3+ Years',
-    description: 'Production Firebase Hosting, real-time Firestore database streams, secure JWT Authentication rules, and cloud function pipelines.',
-    projects: ['Hair Creation', 'Chit Fund Manager']
+    description: 'Interactive 3D WebGL perspective viewports, procedural particle systems, dynamic lighting, camera choreography, and custom shaders.',
+    projects: ['Interactive Skills Showcase', 'Portfolio 3D Viewport']
   }
+]
+
+// Category tabs summary
+const categories = [
+  { name: 'All', count: skills.length },
+  { name: 'Frontend', count: skills.filter(s => s.categoryGroup === 'Frontend').length },
+  { name: 'Backend', count: skills.filter(s => s.categoryGroup === 'Backend').length },
+  { name: 'Database', count: skills.filter(s => s.categoryGroup === 'Database').length },
+  { name: 'DevOps', count: skills.filter(s => s.categoryGroup === 'DevOps').length },
+  { name: 'Creative', count: skills.filter(s => s.categoryGroup === 'Creative').length }
 ]
 
 const activeIndex = ref(0)
 const activeSkill = computed(() => skills[activeIndex.value])
+const currentCategory = computed(() => activeSkill.value?.categoryGroup || 'Frontend')
+
+// Filter jump by category
+const filterByCategory = (catName) => {
+  if (catName === 'All') {
+    selectSkill(0)
+    return
+  }
+  const firstMatchIndex = skills.findIndex(s => s.categoryGroup === catName)
+  if (firstMatchIndex !== -1) {
+    selectSkill(firstMatchIndex)
+  }
+}
 
 // Interactive programmatic jump
 const selectSkill = (idx) => {
@@ -186,10 +293,11 @@ onMounted(() => {
     ctx.fill()
 
     ctx.fillStyle = '#1A1815'
-    ctx.font = '900 36px Syne, Arial, sans-serif'
+    ctx.font = '900 28px Syne, Arial, sans-serif'
     ctx.textAlign = 'center'
     ctx.textBaseline = 'middle'
-    ctx.fillText(item.short[0], x + 70, y + 152)
+    const badgeText = item.short.length <= 3 ? item.short : item.short.slice(0, 2)
+    ctx.fillText(badgeText.toUpperCase(), x + 70, y + 152)
 
     // Category
     ctx.fillStyle = '#A3998C'
@@ -199,13 +307,13 @@ onMounted(() => {
 
     // Skill Name
     ctx.fillStyle = '#F5EFE4'
-    ctx.font = '800 56px Syne, Arial, sans-serif'
+    ctx.font = '800 50px Syne, Arial, sans-serif'
     ctx.fillText(item.name, x + 40, y + 330)
 
     // Experience badge
     ctx.fillStyle = 'rgba(245, 239, 228, 0.08)'
     ctx.beginPath()
-    ctx.roundRect(x + 40, y + 390, 220, 52, 26)
+    ctx.roundRect(x + 40, y + 390, 230, 52, 26)
     ctx.fill()
 
     ctx.fillStyle = item.color
@@ -222,12 +330,12 @@ onMounted(() => {
 
     // Short summary
     ctx.fillStyle = '#D6CCBE'
-    ctx.font = '500 26px Manrope, sans-serif'
+    ctx.font = '500 25px Manrope, sans-serif'
     
     // Simple line wrap for summary
     const words = item.description.split(' ')
     let line = ''
-    let curY = y + 550
+    let curY = y + 545
     for (let n = 0; n < words.length && curY < y + 700; n++) {
       const testLine = line + words[n] + ' '
       const metrics = ctx.measureText(testLine)
@@ -257,7 +365,7 @@ onMounted(() => {
   const cardGeometry = new THREE.PlaneGeometry(cardWidth, cardHeight)
   const cardMeshes = []
 
-  skills.forEach((skill, i) => {
+  skills.forEach((skill) => {
     const mat = new THREE.MeshStandardMaterial({
       map: createCardTexture(skill),
       transparent: true,
@@ -413,7 +521,21 @@ onMounted(() => {
 
 <template>
   <div class="skills-showcase-container">
-    <!-- Top HUD Navigation / Category indicators -->
+    <!-- Category Filter Tabs -->
+    <div class="category-tabs-bar">
+      <button
+        v-for="cat in categories"
+        :key="cat.name"
+        class="cat-tab-btn"
+        :class="{ active: (cat.name === 'All' && false) || currentCategory === cat.name }"
+        @click="filterByCategory(cat.name)"
+      >
+        <span>{{ cat.name }}</span>
+        <span class="cat-count">{{ cat.count }}</span>
+      </button>
+    </div>
+
+    <!-- Top HUD Navigation / Individual skill pills -->
     <div class="skills-pills-bar">
       <button
         v-for="(s, idx) in skills"
@@ -424,6 +546,7 @@ onMounted(() => {
       >
         <span class="pill-dot" :style="{ backgroundColor: s.color }" />
         <span>{{ s.short }}</span>
+        <span class="pill-cat-mini">{{ s.categoryGroup }}</span>
       </button>
     </div>
 
@@ -471,6 +594,7 @@ onMounted(() => {
         <div class="detail-badge">
           <span class="detail-dot" :style="{ backgroundColor: activeSkill.color }" />
           <span class="detail-cat">{{ activeSkill.category }}</span>
+          <span class="detail-group-pill">{{ activeSkill.categoryGroup }}</span>
         </div>
         <span class="detail-exp">{{ activeSkill.experience }} Real-world Dev</span>
       </div>
@@ -496,16 +620,57 @@ onMounted(() => {
 .skills-showcase-container {
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: 20px;
   width: 100%;
 }
 
-/* Category pills row */
+/* Category Filter Tabs */
+.category-tabs-bar {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding-bottom: 4px;
+}
+
+.cat-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: transparent;
+  border: 1.5px solid var(--line);
+  font-family: var(--display);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--mute);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.cat-tab-btn:hover {
+  background: var(--ivory-2);
+  color: var(--ink);
+  border-color: var(--ink);
+}
+
+.cat-tab-btn.active {
+  background: var(--ink);
+  color: var(--ivory);
+  border-color: var(--ink);
+}
+
+.cat-count {
+  font-size: 0.72rem;
+  opacity: 0.7;
+}
+
+/* Individual Skill Pills Row */
 .skills-pills-bar {
   display: flex;
   gap: 8px;
   overflow-x: auto;
-  padding: 4px 4px 12px;
+  padding: 4px 4px 10px;
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
 }
@@ -517,12 +682,12 @@ onMounted(() => {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 18px;
+  padding: 7px 16px;
   border-radius: 999px;
   background: var(--ivory-2);
   border: 1.5px solid var(--line);
   font-family: var(--body);
-  font-size: 0.88rem;
+  font-size: 0.86rem;
   font-weight: 700;
   color: var(--ink);
   white-space: nowrap;
@@ -547,6 +712,19 @@ onMounted(() => {
   height: 8px;
   border-radius: 50%;
   flex-shrink: 0;
+}
+
+.pill-cat-mini {
+  font-size: 0.68rem;
+  opacity: 0.55;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-left: 2px;
+}
+
+.skill-tab-pill.active .pill-cat-mini {
+  opacity: 0.8;
+  color: var(--orange-hi);
 }
 
 /* 3D Perspective Stage */
@@ -678,6 +856,16 @@ onMounted(() => {
   border-radius: 50%;
 }
 
+.detail-group-pill {
+  font-size: 0.74rem;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--ivory);
+  letter-spacing: 0.02em;
+}
+
 .detail-exp {
   font-size: 0.86rem;
   font-weight: 700;
@@ -742,4 +930,3 @@ onMounted(() => {
   }
 }
 </style>
-
